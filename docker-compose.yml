@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: react_fronend
+    build: ./frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - postgres
+        
+  backend:
+    container_name: pyflask_Backend
+    build: ./backend
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/microservices_db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+
+
+  postgres:
+    container_name: postgresDB
+    build: ./database
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: microservices_db    
+    volumes:
+      - data:/var/lib/postgresql/data
+
+
+volumes:
+  data:
