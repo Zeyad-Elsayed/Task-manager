@@ -1,0 +1,7 @@
+- name: Pull all images
+  community.docker.docker_image_pull:
+    name: "{{item}}"
+  loop:
+    - zeyadelsayed/frontend:v1
+    - zeyadelsayed/backend:v1
+    - zeyadelsayed/postgres:v1

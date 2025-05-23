@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   frontend:
-    container_name: react_fronend
-    build: ./frontend
+    container_name: react_frontend
+    image: zeyadelsayed/frontend:v1
     restart: always
     ports:
       - "80:80"
@@ -13,7 +13,7 @@ services:
         
   backend:
     container_name: pyflask_Backend
-    build: ./backend
+    image: zeyadelsayed/backend:v1
     restart: always
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/microservices_db
@@ -25,7 +25,7 @@ services:
 
   postgres:
     container_name: postgresDB
-    build: ./database
+    image: zeyadelsayed/postgres:v1
     restart: always
     environment:
       POSTGRES_HOST: postgres

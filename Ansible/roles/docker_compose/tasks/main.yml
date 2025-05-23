@@ -1,0 +1,17 @@
+- name: Copy docker-compose file
+  ansible.builtin.copy:
+    src: "~/midProject/docker_compose/"
+    dest: "~/test/midProject/docker_compose/"
+    mode: preserve
+
+# - name: Ensure Docker CLI plugins directory exists
+#   ansible.builtin.file:
+#     path: /usr/lib/docker/cli-plugins
+#     state: directory
+#     mode: "0755"
+#   become: true
+    
+- name: Run docker compose
+  community.docker.docker_compose_v2:
+    project_src: ~/test/midProject/docker_compose/
+  register: output
