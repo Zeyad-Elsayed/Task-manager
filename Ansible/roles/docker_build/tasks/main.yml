@@ -1,26 +1,26 @@
 - name: Copy frontend files
   ansible.builtin.copy:
-    src: "~/midProject/frontend/"
-    dest: "~/test/midProject/frontend/"
+    src: "/home/zeyad/midProject/frontend/"
+    dest: "/home/zeyad/test/midProject/frontend/"
     mode: preserve
 
 - name: Copy backend files
   ansible.builtin.copy:
-    src: "~/midProject/backend/"
-    dest: "~/test/midProject/backend/"
+    src: "/home/zeyad/midProject/backend/"
+    dest: "/home/zeyad/test/midProject/backend/"
     mode: preserve
 
 - name: Copy database files
   ansible.builtin.copy:
-    src: "~/midProject/database/"
-    dest: "~/test/midProject/database/"
+    src: "/home/zeyad/midProject/database/"
+    dest: "/home/zeyad/test/midProject/database/"
     mode: preserve
 
 - name: build frontend image
   community.docker.docker_image:
     build:
       nocache: true
-      path: ~/test/midProject/frontend/
+      path: /home/zeyad/test/midProject/frontend/
     name: zeyadelsayed/frontend:v1
     source: build    
     state: present
@@ -30,17 +30,17 @@
   community.docker.docker_image:
     build:
       nocache: true
-      path: ~/test/midProject/backend/
+      path: /home/zeyad/test/midProject/backend/
     name: zeyadelsayed/backend:v1
     source: build    
     state: present
     force_source: yes
 
-- name: Rebuild Docker database image
+- name: build database image
   community.docker.docker_image:
     build:
       nocache: true
-      path: ~/test/midProject/database/
+      path: /home/zeyad/test/midProject/database/
     name: zeyadelsayed/postgres:v1
     source: build    
     state: present

@@ -1,23 +1,21 @@
 ---
-# - name: Setup all servers
-#   hosts: all
-#   become: true
-#   become_method: sudo
-#   gather_facts: true
-#   vars:
-#     ansible_become_password: 123456
-#   roles:
-#     #- update
-#     - docker_install
-#     - docker_compose_install
-#     - nodejs
-#     - python
+- name: Setup all servers
+  hosts: development
+  become: true
+  become_method: sudo
+  gather_facts: true
+  vars:
+    ansible_become_password: 123456
+  roles:
+    - update
+    - docker_install
+    # - nodejs
+    # - python
   
 
 - name: Docker login
-  hosts: localhost
+  hosts: development
   become: true
-  become_method: sudo
   gather_facts: true
   vars:
     ansible_become_password: 123456
@@ -26,9 +24,8 @@
 
 
 - name: Docker build
-  hosts: localhost
+  hosts: development
   become: true
-  become_method: sudo
   gather_facts: true
   vars:
     ansible_become_password: 123456
@@ -36,9 +33,8 @@
     - docker_build
 
 - name: Docker push
-  hosts: localhost
+  hosts: development
   become: true
-  become_method: sudo
   gather_facts: true
   vars:
     ansible_become_password: 123456
@@ -47,9 +43,8 @@
 
 
 - name: Docker pull
-  hosts: localhost
+  hosts: development
   become: true
-  become_method: sudo
   gather_facts: true
   vars:
     ansible_become_password: 123456
@@ -57,9 +52,8 @@
     - docker_pull
 
 - name: Deploy
-  hosts: localhost
+  hosts: development
   become: true
-  become_method: sudo
   gather_facts: true
   vars:
     ansible_become_password: 123456
