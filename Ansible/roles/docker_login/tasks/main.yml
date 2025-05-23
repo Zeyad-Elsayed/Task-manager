@@ -1,4 +1,4 @@
 - name: Log into DockerHub
   community.docker.docker_login:
     username: 'zeyadelsayed'
-    password: 'dckr_pat_HnkszsnZ_nyQhXcsVoOroHJ4-no'
+    password: 'my_acess_token'
